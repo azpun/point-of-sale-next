@@ -1,11 +1,21 @@
 import { Card } from "@/components/Card";
 import Image from "next/image";
+import Link from "next/link";
 
 const MenuPageContent = () => {
   return (
     <div className="space-y-4">
-      <div className="my-4">
-        <h1 className="text-2xl md:text-3xl font-bold mx-4">Menu</h1>
+      <div className="m-4 flex justify-between items-center">
+        <div>
+          <h1 className="text-2xl md:text-3xl font-bold ">Menu</h1>
+        </div>
+        <div>
+          <Link href="/">
+            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+              Kembali
+            </button>
+          </Link>
+        </div>
       </div>
       <div>
         {/* Cakupan Awal */}
@@ -24,7 +34,7 @@ const MenuPageContent = () => {
             </div>
             <div className="my-4">
               <button className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                Tambah Pesanan
+                Tambah ke Keranjang
               </button>
             </div>
           </div>
@@ -48,6 +58,11 @@ const MenuPageContent = () => {
                 className="w-full border border-gray-600 rounded p-2"
               />
             </div>
+            <div>
+              <button className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                Simpan Pesanan
+              </button>
+            </div>
           </div>
         </Card>
       </div>
@@ -55,7 +70,7 @@ const MenuPageContent = () => {
         <Card className="mx-4">
           <div className="m-4 space-y-3">
             <div>
-              <h2 className="font-bold text-lg">Daftar Pesanan</h2>
+              <h2 className="font-bold text-lg">Keranjang Pesanan</h2>
             </div>
             <div className="flex flex-col gap-4 bg-gray-300 p-4">
               <p>Belum ada pesanan</p>
