@@ -1,5 +1,7 @@
+import MenuPageContent from "./_components/MenuPageContent";
+
 const Menu = () => {
-  return <div>Menu</div>;
+  return <MenuPageContent />;
 };
 
 export default Menu;
