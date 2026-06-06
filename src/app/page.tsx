@@ -18,7 +18,6 @@ export default function Home() {
               <div className="p-4">
                 <p>#0001</p>
                 <h3 className="font-bold">Nama-Customer</h3>
-                <p>Daftar Pesanan</p>
                 <p>Total</p>
                 <p>Status</p>
               </div>
