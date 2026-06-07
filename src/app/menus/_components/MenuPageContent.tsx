@@ -10,11 +10,16 @@ const MenuPageContent = () => {
           <h1 className="text-2xl md:text-3xl font-bold ">Menu</h1>
         </div>
         <div>
-          <Link href="/">
+          <div className="flex gap-2">
             <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-              Kembali
+              Tambah Menu
             </button>
-          </Link>
+            <Link href="/">
+              <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                Kembali
+              </button>
+            </Link>
+          </div>
         </div>
       </div>
       <div>
