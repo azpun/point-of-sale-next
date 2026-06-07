@@ -15,12 +15,10 @@ datasource db {
 model Menu {
   id   String  @id @default(cuid())
   name      String
+  description String?
   price     Int
   stock     Int
   imageUrl String
-
-  ordersId  Int
-  orders    Order    @relation(fields: [ordersId], references: [id])
 
   orderItems OrderItem[]
 
@@ -31,7 +29,6 @@ model Menu {
 model Order {
   id    Int    @id @default(autoincrement())
   customerName   String
-  listOrder      Menu[]
   totalPrice     Int
   Status         StatusOrder
 
