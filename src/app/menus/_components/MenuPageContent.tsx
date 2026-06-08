@@ -1,17 +1,32 @@
+"use client";
 import { Card } from "@/components/Card";
+import Modal from "@/components/common/Modal";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 
 const MenuPageContent = () => {
+  const [isAddMenuOpen, setIsAddMenuOpen] = useState(false);
+
   return (
     <div className="space-y-4">
+      {/* Modal Tambah Menu */}
+      {isAddMenuOpen && (
+        <Modal isOpen={isAddMenuOpen} setIsOpen={setIsAddMenuOpen}>
+          Hallo
+        </Modal>
+      )}
+
       <div className="m-4 flex justify-between items-center">
         <div>
           <h1 className="text-2xl md:text-3xl font-bold ">Menu</h1>
         </div>
         <div>
           <div className="flex gap-2">
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            <button
+              onClick={() => setIsAddMenuOpen(true)}
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            >
               Tambah Menu
             </button>
             <Link href="/">
