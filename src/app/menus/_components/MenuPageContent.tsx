@@ -1,6 +1,7 @@
 "use client";
 import { Card } from "@/components/Card";
 import Modal from "@/components/common/Modal";
+import TextField from "@/components/ui/TextField";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -13,7 +14,51 @@ const MenuPageContent = () => {
       {/* Modal Tambah Menu */}
       {isAddMenuOpen && (
         <Modal isOpen={isAddMenuOpen} setIsOpen={setIsAddMenuOpen}>
-          Hallo
+          <div>
+            <h2 className="font-bold text-xl">Tambah Menu</h2>
+          </div>
+          <div className="space-y-2">
+            <TextField
+              label="Nama Makanan"
+              name="name"
+              type="text"
+              placeholder="Sate Ayam"
+            />
+            <TextField
+              label="Harga"
+              name="price"
+              type="number"
+              placeholder="20000"
+            />
+            <TextField
+              label="Stok"
+              name="stok"
+              type="number"
+              placeholder="100"
+            />
+            <TextField
+              label="URL Gambar"
+              name="url"
+              type="text"
+              placeholder="https://example.com/image.jpg"
+            />
+            <div className="flex flex-col gap-1">
+              <label htmlFor="deskripsi">Diskripsi</label>
+              <textarea
+                name="deskripsi"
+                id="deskripsi"
+                rows={5}
+                cols={30}
+                placeholder="Deskripsi makanan"
+                className="border border-gray-500 rounded-md p-2"
+              />
+            </div>
+          </div>
+          <div className="flex justify-end gap-2">
+            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+              Simpan
+            </button>
+          </div>
         </Modal>
       )}
 

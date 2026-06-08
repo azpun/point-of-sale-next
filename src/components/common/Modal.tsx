@@ -24,7 +24,7 @@ const Modal = ({ isOpen, setIsOpen, children }: ModalProps) => {
         >
           <X />
         </button>
-        <div>{children}</div>
+        <div className="space-y-4">{children}</div>
       </div>
     </div>
   );
