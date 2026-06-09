@@ -1,7 +1,7 @@
 type TextFieldProps = {
   label: string;
   name: string;
-  type: "text" | "email" | "password" | "button" | "number" | "url";
+  type: "text" | "email" | "password" | "button" | "number" | "url" | string;
   placeholder?: string;
   disabled?: boolean;
 };
