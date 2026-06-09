@@ -14,8 +14,13 @@ const ModalTambahMenu = ({ isOpen, setIsOpen }: ModalTambahMenuProps) => {
       type: "text",
       placeholder: "Sate Ayam",
     },
-    { label: "Harga", name: "price", type: "number", placeholder: "20000" },
-    { label: "Stok", name: "stok", type: "number", placeholder: "100" },
+    {
+      label: "Harga Makanan",
+      name: "price",
+      type: "number",
+      placeholder: "20000",
+    },
+    { label: "Stok Makanan", name: "stok", type: "number", placeholder: "100" },
     {
       label: "URL Gambar",
       name: "url",
