@@ -6,7 +6,20 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
-const MenuPageContent = () => {
+type MenuPageContentProps = {
+  dataMenu: {
+    id: string;
+    name: string;
+    price: number;
+    stock: number;
+    imageUrl: string;
+    description: string | null;
+    createdAt: Date;
+    updatedAt: Date;
+  }[];
+};
+
+const MenuPageContent = ({ dataMenu }: MenuPageContentProps) => {
   const [isAddMenuOpen, setIsAddMenuOpen] = useState(false);
 
   return (
@@ -39,25 +52,32 @@ const MenuPageContent = () => {
       <div>
         {/* Cakupan Awal */}
         {/* nanti akan data akan disajikan dengan bentuk array of object dari menu menggunakan array method map*/}
-        <Card className="mx-4">
-          <div className="m-4">
-            <div>
-              <Image src="/logo.png" width={100} height={100} alt="logo" />
-            </div>
-            <div className="flex justify-between items-center">
-              <h2 className="font-bold text-lg">Nama Makanan</h2>
+        {dataMenu.map(menu => (
+          <Card key={menu.id} className="mx-4">
+            <div className="m-4">
               <div>
-                <p>Harga</p>
-                <p>stock</p>
+                <Image
+                  src={menu.imageUrl}
+                  width={700}
+                  height={100}
+                  alt="logo"
+                />
+              </div>
+              <div className="flex justify-between items-center">
+                <h2 className="font-bold text-lg">{menu.name}</h2>
+                <div>
+                  <p>Rp{menu.price.toLocaleString("id-ID")}</p>
+                  <p>Stok: {menu.stock}</p>
+                </div>
+              </div>
+              <div className="my-4">
+                <button className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                  Tambah ke Keranjang
+                </button>
               </div>
             </div>
-            <div className="my-4">
-              <button className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                Tambah ke Keranjang
-              </button>
-            </div>
-          </div>
-        </Card>
+          </Card>
+        ))}
         {/* Cakupan Akhir */}
       </div>
       {/* Detail Pemesan */}
