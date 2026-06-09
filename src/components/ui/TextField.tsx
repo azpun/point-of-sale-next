@@ -1,7 +1,9 @@
+import { HTMLInputTypeAttribute } from "react";
+
 type TextFieldProps = {
   label: string;
   name: string;
-  type: "text" | "email" | "password" | "button" | "number" | "url" | string;
+  type: HTMLInputTypeAttribute;
   placeholder?: string;
   disabled?: boolean;
 };

@@ -1,3 +1,4 @@
+// src/app/menus/_components/MenuPageContent.tsx
 "use client";
 import { Card } from "@/components/Card";
 import ModalTambahMenu from "@/components/common/ModalTambahMenu";
