@@ -18,6 +18,7 @@ export async function postMenuItems(formData: FormData) {
         description: description,
       },
     });
+    console.log("Menu item created successfully");
   } catch (error) {
     console.error("Error creating menu item:", error);
     throw new Error("Failed to create menu item");
