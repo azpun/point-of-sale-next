@@ -47,7 +47,7 @@ const useCart = () => {
               ? {
                   ...item,
                   quantity: item.quantity - 1,
-                  total: item.price * item.quantity,
+                  total: item.total - item.price,
                 }
               : item,
           ),

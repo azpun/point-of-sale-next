@@ -164,18 +164,36 @@ const MenuPageContent = ({ dataMenu }: MenuPageContentProps) => {
                             <p>Total</p>
                             <p>
                               Rp
-                              {(item.price * item.quantity).toLocaleString(
-                                "id-ID",
-                              )}
+                              {item.total.toLocaleString("id-ID")}
                             </p>
                           </div>
                         </div>
                       </div>
                     ))}
-
+                    <div>
+                      <svg
+                        width="100%"
+                        height="20"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <line
+                          x1="0"
+                          y1="10"
+                          x2="100%"
+                          y2="10"
+                          stroke="black"
+                          stroke-width="1"
+                        />
+                      </svg>
+                    </div>
                     <div className="flex justify-between items-center">
                       <div>Total</div>
-                      <div></div>
+                      <div>
+                        Rp
+                        {cart
+                          .reduce((total, item) => total + item.total, 0)
+                          .toLocaleString("id-ID")}
+                      </div>
                     </div>
                     <div>
                       <button className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
