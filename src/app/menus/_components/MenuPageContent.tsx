@@ -123,58 +123,66 @@ const MenuPageContent = ({ dataMenu }: MenuPageContentProps) => {
                   <h2 className="font-bold text-lg">Keranjang Pesanan</h2>
                 </div>
                 {cart.length > 0 ? (
-                  cart.map(item => (
-                    <div key={item.menu_id}>
-                      <div className="flex justify-between items-center py-4">
-                        <div>
-                          <p>{item.name}</p>
-                          <p>Rp{item.price}</p>
-                        </div>
-                        <div className="flex items-center gap-4">
-                          <button
-                            onClick={() => {
-                              handleAddToCart(
-                                "decrement",
-                                `${item.menu_id}`,
-                                `${item.name}`,
-                                item.price,
-                              );
-                            }}
-                            className={`w-8 h-8 flex items-center justify-center font-bold bg-blue-500 hover:bg-blue-700 text-white rounded`}
-                          >
-                            -
-                          </button>
-                          <p>{item.quantity}</p>
-                          <button
-                            onClick={() => {
-                              handleAddToCart(
-                                "increment",
-                                `${item.menu_id}`,
-                                `${item.name}`,
-                                item.price,
-                              );
-                            }}
-                            className={`w-8 h-8 flex items-center justify-center font-bold bg-blue-500 hover:bg-blue-700 text-white rounded`}
-                          >
-                            +
-                          </button>
-                        </div>
-                        <div>
-                          <p>Total</p>
-                          <p>
-                            {(item.price * item.quantity).toLocaleString(
-                              "id-ID",
-                            )}
-                          </p>
+                  <>
+                    {cart.map(item => (
+                      <div key={item.menu_id}>
+                        <div className="flex justify-between items-center py-4">
+                          <div>
+                            <p>{item.name}</p>
+                            <p>Rp{item.price.toLocaleString("id-ID")}</p>
+                          </div>
+                          <div className="flex items-center gap-4">
+                            <button
+                              onClick={() => {
+                                handleAddToCart(
+                                  "decrement",
+                                  `${item.menu_id}`,
+                                  `${item.name}`,
+                                  item.price,
+                                );
+                              }}
+                              className={`w-8 h-8 flex items-center justify-center font-bold bg-blue-500 hover:bg-blue-700 text-white rounded`}
+                            >
+                              -
+                            </button>
+                            <p>{item.quantity}</p>
+                            <button
+                              onClick={() => {
+                                handleAddToCart(
+                                  "increment",
+                                  `${item.menu_id}`,
+                                  `${item.name}`,
+                                  item.price,
+                                );
+                              }}
+                              className={`w-8 h-8 flex items-center justify-center font-bold bg-blue-500 hover:bg-blue-700 text-white rounded`}
+                            >
+                              +
+                            </button>
+                          </div>
+                          <div>
+                            <p>Total</p>
+                            <p>
+                              Rp
+                              {(item.price * item.quantity).toLocaleString(
+                                "id-ID",
+                              )}
+                            </p>
+                          </div>
                         </div>
                       </div>
-                      <div>
-                        <button className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                          Simpan Pesanan
-                        </button>
-                      </div>
+                    ))}
+
+                    <div className="flex justify-between items-center">
+                      <div>Total</div>
+                      <div></div>
                     </div>
-                  ))
+                    <div>
+                      <button className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                        Simpan Pesanan
+                      </button>
+                    </div>
+                  </>
                 ) : (
                   <div className="flex flex-col gap-4 bg-gray-300 p-4">
                     <p>Belum ada pesanan</p>

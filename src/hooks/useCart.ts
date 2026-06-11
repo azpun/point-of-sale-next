@@ -5,6 +5,7 @@ type CartStats = {
   name: string;
   price: number;
   quantity: number;
+  total: number;
 };
 
 const useCart = () => {
@@ -25,12 +26,16 @@ const useCart = () => {
               ? {
                   ...item,
                   quantity: item.quantity + 1,
+                  total: item.price * (item.quantity + 1),
                 }
               : item,
           ),
         );
       } else {
-        setCart([...cart, { menu_id: id, name, price, quantity: 1 }]);
+        setCart([
+          ...cart,
+          { menu_id: id, name, price, quantity: 1, total: price },
+        ]);
       }
     } else {
       if (existingItem && existingItem.quantity <= 1) {
@@ -42,6 +47,7 @@ const useCart = () => {
               ? {
                   ...item,
                   quantity: item.quantity - 1,
+                  total: item.price * item.quantity,
                 }
               : item,
           ),
