@@ -22,6 +22,7 @@ type MenuPageContentProps = {
 
 const MenuPageContent = ({ dataMenu }: MenuPageContentProps) => {
   const { cart, handleAddToCart } = useCart();
+  console.log(cart);
 
   const [isAddMenuOpen, setIsAddMenuOpen] = useState(false);
 
