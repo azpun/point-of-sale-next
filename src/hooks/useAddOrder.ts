@@ -10,15 +10,21 @@ export const useCreateOrder = (cartData: OrderMenuType[]) => {
   ) => {
     formEvent.preventDefault();
     const formData = formEvent.target as HTMLFormElement;
-    const data = {
+    const orderData = {
       customerName: formData.customerName.value,
       totalPrice: cartData.reduce((total, item) => total + item.total, 0),
       status: formData.status.value,
       orderItems: cartData,
     };
+    const orderItemsData = cartData.map(item => ({
+      menu_id: item.menu_id,
+      quantity: item.quantity,
+      price: item.price,
+    }));
     setLoading(true);
     router.push("/");
-    console.log("Submitting order data:", data);
+    console.log("Submitting order data:", orderData);
+    console.log("Submitting order items data:", orderItemsData);
   };
   return { handleCreateOrder, loading };
 };
