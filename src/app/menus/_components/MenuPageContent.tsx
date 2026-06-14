@@ -106,14 +106,25 @@ const MenuPageContent = ({ dataMenu }: MenuPageContentProps) => {
                     <h2 className="font-bold text-lg">Detail Pemesan</h2>
                   </div>
                   <div>
-                    <label htmlFor="nama">Nama Pelanggan</label>
+                    <label htmlFor="customerName">Nama Pelanggan</label>
                     <input
                       type="text"
-                      name="nama"
-                      id="nama"
+                      name="customerName"
+                      id="customerName"
                       placeholder="Masukan Nama"
                       className="w-full border border-gray-600 rounded p-2"
                     />
+                  </div>
+                  <div className="flex flex-col">
+                    <label htmlFor="status">Status</label>
+                    <select
+                      name="status"
+                      id="status"
+                      className="p-3 border border-gray-500 rounded-md"
+                    >
+                      <option value="Diproses">Diproses</option>
+                      <option value="Antrian">Antrian</option>
+                    </select>
                   </div>
                 </div>
               </Card>
@@ -135,6 +146,7 @@ const MenuPageContent = ({ dataMenu }: MenuPageContentProps) => {
                             </div>
                             <div className="flex items-center gap-4">
                               <button
+                                type="button"
                                 onClick={() => {
                                   handleAddToCart(
                                     "decrement",
@@ -149,6 +161,7 @@ const MenuPageContent = ({ dataMenu }: MenuPageContentProps) => {
                               </button>
                               <p>{item.quantity}</p>
                               <button
+                                type="button"
                                 onClick={() => {
                                   handleAddToCart(
                                     "increment",
@@ -198,7 +211,10 @@ const MenuPageContent = ({ dataMenu }: MenuPageContentProps) => {
                         </div>
                       </div>
                       <div>
-                        <button className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                        <button
+                          type="submit"
+                          className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                        >
                           Simpan Pesanan
                         </button>
                       </div>
