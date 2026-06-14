@@ -1,15 +1,8 @@
+import { OrderMenuType } from "@/types/order";
 import { useState } from "react";
 
-type CartStats = {
-  menu_id: string;
-  name: string;
-  price: number;
-  quantity: number;
-  total: number;
-};
-
 const useCart = () => {
-  const [cart, setCart] = useState<CartStats[]>([]);
+  const [cart, setCart] = useState<OrderMenuType[]>([]);
 
   const handleAddToCart = (
     type: string,
@@ -17,11 +10,13 @@ const useCart = () => {
     name: string,
     price: number,
   ) => {
-    const existingItem = cart.find((item: CartStats) => item.menu_id === id);
+    const existingItem = cart.find(
+      (item: OrderMenuType) => item.menu_id === id,
+    );
     if (type === "increment") {
       if (existingItem) {
         setCart(
-          cart.map((item: CartStats) =>
+          cart.map((item: OrderMenuType) =>
             item.menu_id === id
               ? {
                   ...item,
@@ -39,10 +34,10 @@ const useCart = () => {
       }
     } else {
       if (existingItem && existingItem.quantity <= 1) {
-        setCart(cart.filter((item: CartStats) => item.menu_id !== id));
+        setCart(cart.filter((item: OrderMenuType) => item.menu_id !== id));
       } else {
         setCart(
-          cart.map((item: CartStats) =>
+          cart.map((item: OrderMenuType) =>
             item.menu_id === id
               ? {
                   ...item,

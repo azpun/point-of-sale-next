@@ -68,7 +68,7 @@ export default function Home() {
                     </span>
                   </td>
                   <td className="border p-2">
-                    <button className="bg-blue-500 hover:bg-blue-700 p-2 m-2 rounded-md text-white">
+                    <button className="bg-blue-500 hover:bg-blue-700 p-2  rounded-md text-white">
                       Lihat
                     </button>
                   </td>
