@@ -2,6 +2,7 @@
 "use client";
 import { Card } from "@/components/Card";
 import ModalTambahMenu from "@/components/common/ModalTambahMenu";
+import { useCreateOrder } from "@/hooks/useAddOrder";
 import useCart from "@/hooks/useCart";
 import Image from "next/image";
 import Link from "next/link";
@@ -22,7 +23,7 @@ type MenuPageContentProps = {
 
 const MenuPageContent = ({ dataMenu }: MenuPageContentProps) => {
   const { cart, handleAddToCart } = useCart();
-  console.log(cart);
+  const { handleCreateOrder, loading } = useCreateOrder(cart);
 
   const [isAddMenuOpen, setIsAddMenuOpen] = useState(false);
 
@@ -87,6 +88,7 @@ const MenuPageContent = ({ dataMenu }: MenuPageContentProps) => {
                         menu.price,
                       );
                     }}
+                    disabled={loading}
                     className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                   >
                     Tambah ke Keranjang
@@ -98,7 +100,7 @@ const MenuPageContent = ({ dataMenu }: MenuPageContentProps) => {
         </div>
 
         {/* Detail Pemesan */}
-        <form action="">
+        <form onSubmit={handleCreateOrder}>
           <div className="space-y-4 md:w-150">
             <div>
               <Card className="mx-4">
@@ -114,6 +116,7 @@ const MenuPageContent = ({ dataMenu }: MenuPageContentProps) => {
                       id="customerName"
                       placeholder="Masukan Nama"
                       className="w-full border border-gray-600 rounded p-2"
+                      disabled={loading}
                     />
                   </div>
                   <div className="flex flex-col">
@@ -122,6 +125,7 @@ const MenuPageContent = ({ dataMenu }: MenuPageContentProps) => {
                       name="status"
                       id="status"
                       className="p-3 border border-gray-500 rounded-md"
+                      disabled={loading}
                     >
                       <option value="Diproses">Diproses</option>
                       <option value="Antrian">Antrian</option>
@@ -141,40 +145,42 @@ const MenuPageContent = ({ dataMenu }: MenuPageContentProps) => {
                       {cart.map(item => (
                         <div key={item.menu_id}>
                           <div className="flex flex-col md:flex-row justify-between md:items-center py-4 gap-3">
-                            <div>
-                              <p className="font-bold">{item.name}</p>
-                              <p>Rp{item.price.toLocaleString("id-ID")}</p>
-                            </div>
-                            <div className="flex items-center gap-4">
-                              <button
-                                type="button"
-                                onClick={() => {
-                                  handleAddToCart(
-                                    "decrement",
-                                    `${item.menu_id}`,
-                                    `${item.name}`,
-                                    item.price,
-                                  );
-                                }}
-                                className={`w-8 h-8 flex items-center justify-center font-bold bg-blue-500 hover:bg-blue-700 text-white rounded`}
-                              >
-                                -
-                              </button>
-                              <p>{item.quantity}</p>
-                              <button
-                                type="button"
-                                onClick={() => {
-                                  handleAddToCart(
-                                    "increment",
-                                    `${item.menu_id}`,
-                                    `${item.name}`,
-                                    item.price,
-                                  );
-                                }}
-                                className={`w-8 h-8 flex items-center justify-center font-bold bg-blue-500 hover:bg-blue-700 text-white rounded`}
-                              >
-                                +
-                              </button>
+                            <div className="flex justify-between md:flex-col md:gap-3">
+                              <div>
+                                <p className="font-bold">{item.name}</p>
+                                <p>Rp{item.price.toLocaleString("id-ID")}</p>
+                              </div>
+                              <div className="flex items-center gap-4">
+                                <button
+                                  type="button"
+                                  onClick={() => {
+                                    handleAddToCart(
+                                      "decrement",
+                                      `${item.menu_id}`,
+                                      `${item.name}`,
+                                      item.price,
+                                    );
+                                  }}
+                                  className={`w-8 h-8 flex items-center justify-center font-bold bg-blue-500 hover:bg-blue-700 text-white rounded`}
+                                >
+                                  -
+                                </button>
+                                <p>{item.quantity}</p>
+                                <button
+                                  type="button"
+                                  onClick={() => {
+                                    handleAddToCart(
+                                      "increment",
+                                      `${item.menu_id}`,
+                                      `${item.name}`,
+                                      item.price,
+                                    );
+                                  }}
+                                  className={`w-8 h-8 flex items-center justify-center font-bold bg-blue-500 hover:bg-blue-700 text-white rounded`}
+                                >
+                                  +
+                                </button>
+                              </div>
                             </div>
                             <div>
                               <p>Total</p>
@@ -214,6 +220,7 @@ const MenuPageContent = ({ dataMenu }: MenuPageContentProps) => {
                       <div>
                         <button
                           type="submit"
+                          disabled={loading}
                           className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                         >
                           Simpan Pesanan
