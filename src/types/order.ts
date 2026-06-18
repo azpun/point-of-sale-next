@@ -9,6 +9,6 @@ export type OrderMenuType = {
 export type OrderDataType = {
   customerName: string;
   totalPrice: number;
-  status: string;
+  status: "Antrian" | "Diproses" | "Selesai" | "Batal";
   orderItems: OrderMenuType[];
 };
