@@ -19,31 +19,9 @@ export const useCreateOrder = (cartData: OrderMenuType[]) => {
       orderItems: cartData,
     };
 
-    // const lastOrderId = await prisma.order.findFirst({
-    //   orderBy: {
-    //     id: "desc",
-    //   },
-    //   select: {
-    //     id: true,
-    //   },
-    // });
-
-    // console.log("Last Order ID:", lastOrderId?.id);
-
-    // await prisma.order.create({
-    //   data: {
-    //     customerName: orderData.customerName,
-    //     totalPrice: orderData.totalPrice,
-    //     Status: orderData.status,
-    //     orderCode: `ORD-`,
-    //     orderItems: {},
-    //   },
-    // });
-
     setLoading(true);
     await createOrder(orderData);
     router.push("/");
-    console.log("Submitting order data:", orderData);
   };
   return { handleCreateOrder, loading };
 };

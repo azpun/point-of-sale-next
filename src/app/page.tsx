@@ -1,8 +1,10 @@
 import { Card } from "@/components/Card";
+import prisma from "@/lib/prisma";
 import { Plus } from "lucide-react";
 import Link from "next/link";
 
-export default function Home() {
+export default async function Home() {
+  const orders = await prisma.order.findMany({});
   return (
     <div>
       <div className="flex flex-col">
@@ -57,22 +59,32 @@ export default function Home() {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td className="border p-2">ORD-001</td>
-                  <td className="border p-2">Budi Pekerti</td>
-                  <td className="border p-2">Rp125.000</td>
-                  <td className="border p-2">11-06-2026</td>
-                  <td className="border p-2">
-                    <span className="bg-blue-500 text-white p-2 rounded-lg">
-                      Dalam Antrian
-                    </span>
-                  </td>
-                  <td className="border p-2">
-                    <button className="bg-blue-500 hover:bg-blue-700 p-2  rounded-md text-white">
-                      Lihat
-                    </button>
-                  </td>
-                </tr>
+                {orders.map(order => {
+                  return (
+                    <tr key={order.id}>
+                      <td className="border p-2">{order.orderCode}</td>
+                      <td className="border p-2">{order.customerName}</td>
+                      <td className="border p-2">{order.totalPrice}</td>
+                      <td className="border p-2">
+                        {order.createdAt.toLocaleDateString("id-ID", {
+                          day: "numeric",
+                          month: "long",
+                          year: "numeric",
+                        })}
+                      </td>
+                      <td className="border p-2">
+                        <span className="bg-blue-500 text-white p-2 rounded-lg">
+                          {order.status}
+                        </span>
+                      </td>
+                      <td className="border p-2">
+                        <button className="bg-blue-500 hover:bg-blue-700 p-2  rounded-md text-white">
+                          Lihat
+                        </button>
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>
