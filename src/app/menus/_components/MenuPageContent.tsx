@@ -228,7 +228,7 @@ const MenuPageContent = ({ dataMenu }: MenuPageContentProps) => {
                       </div>
                     </>
                   ) : (
-                    <div className="flex flex-col gap-4 bg-gray-300 p-4">
+                    <div className="flex flex-col gap-4 bg-gray-300 dark:bg-gray-800 p-4">
                       <p>Belum ada pesanan</p>
                     </div>
                   )}

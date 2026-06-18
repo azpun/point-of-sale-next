@@ -5,3 +5,10 @@ export type OrderMenuType = {
   quantity: number;
   total: number;
 };
+
+export type OrderDataType = {
+  customerName: string;
+  totalPrice: number;
+  status: string;
+  orderItems: OrderMenuType[];
+};

@@ -1,6 +1,8 @@
-import { OrderMenuType } from "@/types/order";
+"use client";
+import { OrderDataType, OrderMenuType } from "@/types/order";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { createOrder } from "@/services/order.service";
 
 export const useCreateOrder = (cartData: OrderMenuType[]) => {
   const router = useRouter();
@@ -10,21 +12,38 @@ export const useCreateOrder = (cartData: OrderMenuType[]) => {
   ) => {
     formEvent.preventDefault();
     const formData = formEvent.target as HTMLFormElement;
-    const orderData = {
+    const orderData: OrderDataType = {
       customerName: formData.customerName.value,
       totalPrice: cartData.reduce((total, item) => total + item.total, 0),
       status: formData.status.value,
       orderItems: cartData,
     };
-    const orderItemsData = cartData.map(item => ({
-      menu_id: item.menu_id,
-      quantity: item.quantity,
-      price: item.price,
-    }));
+
+    // const lastOrderId = await prisma.order.findFirst({
+    //   orderBy: {
+    //     id: "desc",
+    //   },
+    //   select: {
+    //     id: true,
+    //   },
+    // });
+
+    // console.log("Last Order ID:", lastOrderId?.id);
+
+    // await prisma.order.create({
+    //   data: {
+    //     customerName: orderData.customerName,
+    //     totalPrice: orderData.totalPrice,
+    //     Status: orderData.status,
+    //     orderCode: `ORD-`,
+    //     orderItems: {},
+    //   },
+    // });
+
     setLoading(true);
+    await createOrder(orderData);
     router.push("/");
     console.log("Submitting order data:", orderData);
-    console.log("Submitting order items data:", orderItemsData);
   };
   return { handleCreateOrder, loading };
 };
