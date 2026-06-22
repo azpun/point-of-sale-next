@@ -22,27 +22,44 @@ export default async function Home() {
 
           {/* mobile version */}
           <div className="w-full flex flex-col gap-4 md:hidden">
-            <Card className="max-w-131.25">
-              <div className="p-4">
-                <p>#0001</p>
-                <h3 className="font-bold">Nama-Customer</h3>
-                <p>Total</p>
-                <p>Status</p>
-              </div>
-              <div className="border-t bg-gray-100">
-                <div className="flex justify-end gap-2 p-4">
-                  <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded flex-1">
-                    Lihat
-                  </button>
-                  <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded flex-1">
-                    Bayar
-                  </button>
-                  <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
-                    Batal
-                  </button>
-                </div>
-              </div>
-            </Card>
+            {orders.map(order => {
+              return (
+                <Card key={order.id} className="max-w-131.25">
+                  <div className="p-4 flex justify-between items-center">
+                    <div className="">
+                      <p>{order.orderCode}</p>
+                      <h3 className="font-bold">{order.customerName}</h3>
+                      <p>Rp.{order.totalPrice.toLocaleString("id-ID")}</p>
+                      <div>
+                        <p>{order.status}</p>
+                      </div>
+                    </div>
+                    <div>
+                      <p>
+                        {order.createdAt.toLocaleDateString("id-ID", {
+                          day: "numeric",
+                          month: "long",
+                          year: "numeric",
+                        })}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="border-t bg-gray-100 dark:bg-black">
+                    <div className="flex justify-end gap-2 p-4">
+                      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded flex-1">
+                        Lihat
+                      </button>
+                      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded flex-1">
+                        Bayar
+                      </button>
+                      <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                        Batal
+                      </button>
+                    </div>
+                  </div>
+                </Card>
+              );
+            })}
           </div>
 
           {/* desktop version */}
