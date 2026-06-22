@@ -26,11 +26,21 @@ export default async function Home() {
               return (
                 <Card key={order.id} className="max-w-131.25">
                   <div className="p-4 flex justify-between items-center">
-                    <div className="">
-                      <p>{order.orderCode}</p>
-                      <h3 className="font-bold">{order.customerName}</h3>
-                      <p>Rp.{order.totalPrice.toLocaleString("id-ID")}</p>
-                      <div>
+                    <div className="flex flex-col gap-2">
+                      <p className="text-sm">{order.orderCode}</p>
+                      <h3 className="font-bold text-2xl">
+                        {order.customerName}
+                      </h3>
+                      <p className="text-lg">
+                        Rp.{order.totalPrice.toLocaleString("id-ID")}
+                      </p>
+                      <div
+                        className={`p-1 rounded font-bold
+                        ${order.status === "Antrian" && "bg-amber-500"}
+                        ${order.status === "Diproses" && "bg-blue-500"}
+                        ${order.status === "Selesai" && "bg-green-500"}
+                        ${order.status === "Batal" && "bg-red-500"}`}
+                      >
                         <p>{order.status}</p>
                       </div>
                     </div>
@@ -90,7 +100,13 @@ export default async function Home() {
                         })}
                       </td>
                       <td className="border p-2">
-                        <span className="bg-blue-500 text-white p-2 rounded-lg">
+                        <span
+                          className={`p-1 rounded font-bold
+                        ${order.status === "Antrian" && "bg-amber-500"}
+                        ${order.status === "Diproses" && "bg-blue-500"}
+                        ${order.status === "Selesai" && "bg-green-500"}
+                        ${order.status === "Batal" && "bg-red-500"}`}
+                        >
                           {order.status}
                         </span>
                       </td>
