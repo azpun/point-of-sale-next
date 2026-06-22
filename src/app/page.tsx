@@ -34,17 +34,8 @@ export default async function Home() {
                       <p className="text-lg">
                         Rp.{order.totalPrice.toLocaleString("id-ID")}
                       </p>
-                      <div
-                        className={`p-1 rounded font-bold
-                        ${order.status === "Antrian" && "bg-amber-500"}
-                        ${order.status === "Diproses" && "bg-blue-500"}
-                        ${order.status === "Selesai" && "bg-green-500"}
-                        ${order.status === "Batal" && "bg-red-500"}`}
-                      >
-                        <p>{order.status}</p>
-                      </div>
                     </div>
-                    <div>
+                    <div className="flex flex-col gap-2 ">
                       <p>
                         {order.createdAt.toLocaleDateString("id-ID", {
                           day: "numeric",
@@ -52,6 +43,15 @@ export default async function Home() {
                           year: "numeric",
                         })}
                       </p>
+                      <div
+                        className={`p-2 rounded font-bold text-center
+                          ${order.status === "Antrian" && "bg-amber-500"}
+                          ${order.status === "Diproses" && "bg-blue-500"}
+                          ${order.status === "Selesai" && "bg-green-500"}
+                          ${order.status === "Batal" && "bg-red-500"}`}
+                      >
+                        <p>{order.status}</p>
+                      </div>
                     </div>
                   </div>
                   <div className="border-t bg-gray-100 dark:bg-black">
@@ -101,7 +101,7 @@ export default async function Home() {
                       </td>
                       <td className="border p-2">
                         <span
-                          className={`p-1 rounded font-bold
+                          className={`p-1 rounded font-bold text-center
                         ${order.status === "Antrian" && "bg-amber-500"}
                         ${order.status === "Diproses" && "bg-blue-500"}
                         ${order.status === "Selesai" && "bg-green-500"}
@@ -110,9 +110,15 @@ export default async function Home() {
                           {order.status}
                         </span>
                       </td>
-                      <td className="border p-2">
-                        <button className="bg-blue-500 hover:bg-blue-700 p-2  rounded-md text-white">
+                      <td className="border p-2 flex gap-2">
+                        <button className="bg-blue-500 hover:bg-blue-700 p-2 rounded text-white font-bold m-1 w-full">
                           Lihat
+                        </button>
+                        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded  m-1 w-full">
+                          Bayar
+                        </button>
+                        <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded m-1 w-full">
+                          Batal
                         </button>
                       </td>
                     </tr>
